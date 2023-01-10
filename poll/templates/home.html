@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home|Poll</title>
+</head>
+<body>
+
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+		font-family: sans-serif;
+		box-sizing: border-box;
+	}
+	.logo {
+		font-family: monospace;
+		position: absolute;
+		top: .8em;
+		left: 0;
+		color: blueviolet;
+		font-size: 18px;
+		font-style: italic;
+		background: rgba(200, 200, 200, 0.5);
+		border-radius: 5px;
+		padding: 8px;
+	}
+	nav {
+		display: flex;
+		justify-content: flex-end;
+		align-self: center;
+		background: #999;
+		margin: 8px 0;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
+	nav a {
+		margin: 3px 5px;
+		text-decoration: none;
+		color: #ffbaff;
+		font-size: 17px;
+		padding: 2px;
+		border-left: 2px solid #fff;
+	}
+
+</style>
+
+<nav>
+	{% if request.user.is_authenticated %}
+	<a href="" class="logo">Hi, {{request.user}}</a>
+
+	{% else %}
+	<a href="" class="logo">Login/Register</a>
+	{% endif %}
+	<a href='/'>Home</a>
+	<a href="{% url 'create' %}">Create-poll</a>
+</nav>
+
+
+{% block content %}
+
+<style type="text/css">
+	
+.poll-container {
+	display: flex;
+	flex-direction: column;
+
+}
+.poll-container div {
+	margin-top: 15px;
+}
+.poll-container div a {
+	color: #fff;
+	background: steelblue;
+	padding: 5px;
+	text-decoration: none;
+	border-radius: 5px;
+}
+strong {
+	text-align: center;
+	margin: 2px;
+}
+</style>
+
+	<div class="poll-container">
+		{% for p in poll %}
+		<div>
+			<strong>{{p.question}}</strong>
+			<a href="{% url 'vote' p.id %}">Vote</a>
+			<a href="{% url 'result' p.id %}">Results</a>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}
+</body>
+</html>

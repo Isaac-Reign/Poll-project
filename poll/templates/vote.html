@@ -1,0 +1,78 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<style type="text/css">
+	.container {
+		position: relative;
+		width: 80%;
+		height: 200px;
+		max-width: 700px;
+		box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.5);
+		padding: 8px;
+		padding-top: 40px;
+		margin: 20px auto
+	}
+	.c {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 5px;
+		background: orange;
+		width: 100%;
+	}
+
+	strong {
+		font-size: 18px;
+	}
+
+	.container div {
+		margin-top: 11px;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+		width: 100%
+	}
+	label {
+		display: block
+	}
+	.container input {
+		margin: 5px ;
+	}
+	input[type='submit'] {
+		position: absolute;
+		bottom: .5em;
+		right: 1em;
+		padding: 8px 25px;
+		color: #fff;
+		background: blueviolet;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+</style>
+<form method="POST">
+
+	{% csrf_token %}
+
+	<div class="container">
+		<span class="c">Cast Your Vote</span>
+		<strong>{{poll.question}}</strong>
+
+		<div>
+			<label>
+				<input type="radio" name="poll" value="option1" required>{{poll.option_one}} 
+			</label>
+			<label>
+				<input type="radio" name="poll" value="option2" required> {{poll.option_two}}
+			</label>
+				<label>
+				<input type="radio" name="poll" value="option3" required> {{poll.option_three}}
+			</label>
+		</div>
+
+		<input type="Submit" name="" value="Vote">
+	</div>
+</form>
+
+{% endblock %}

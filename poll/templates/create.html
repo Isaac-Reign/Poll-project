@@ -1,0 +1,93 @@
+
+{% extends 'home.html' %}
+{% block content %}
+
+<style type="text/css">
+
+	nav a:last-child{
+		opacity: .8
+	}
+	form {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-self: center;
+		flex-direction: column;
+	}
+	textarea {
+		width: 80%;
+		height: 70px;
+		border: 1px solid lightgreen;
+		border-radius: 5px;
+		padding: 5px;
+		color: #032;
+		margin: 0 auto;
+		margin-bottom: 30px;
+		outline: none;
+	}
+	textarea:focus {
+		transition: .2s;
+		border: 3px solid lightgreen;
+	}
+	.sub-fields  {
+		display: flex;
+		margin: 10px 8px;
+	}
+	.sub-fields div{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%
+	}
+	input {
+		border-radius: 5px;
+		height: 30px;
+		border: 2px solid #999aff;
+
+	}
+	button {
+		margin: 20px 8px;
+		padding: 8px;
+		height: 50px;
+		color: #fff;
+		background: steelblue;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	.id_question {
+		margin-left: 60px
+	}
+</style>
+
+<div class="card">
+	<form method="POST">
+	 {% csrf_token %}
+	 <label for="id_question" class="id_question">Enter question:</label>
+	 {{form.question}}
+	 {{form.username}}
+	 <div class="sub-fields">
+	 	<div>
+		 	<label for="id_option_one">Option one</label>
+		 	{{form.option_one}}
+		 </div>
+
+		 <div>
+		 	<label for="id_option_two">Option two</label>
+		 	{{form.option_two}}
+		 </div>
+
+		<div>
+		 	<label for="id_option_three">Option Three</label>
+		 	{{form.option_three}}
+		 </div>
+
+	 </div>
+
+	 <button type="submit">Submit</button>
+		
+	</form>
+</div>
+
+{% endblock %}

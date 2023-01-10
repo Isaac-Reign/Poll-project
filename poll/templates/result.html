@@ -1,0 +1,82 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<style type="text/css">
+	.container {
+		position: relative;
+		width: 80%;
+		height: 200px;
+		max-width: 700px;
+		background: #cfff;
+		box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.5);
+		padding: 8px;
+		padding-top: 40px;
+		margin: 20px auto
+	}
+	.c {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 5px;
+		background: steelblue;
+		color: #fff;
+		opacity: .8;
+		width: 100%;
+	}
+
+	strong {
+		font-size: 18px;
+	}
+
+	.container div {
+		margin-top: 11px;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+		width: 100%
+	}
+	label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%
+	}
+	label span {
+	}
+	.container input {
+		margin: 5px ;
+	}
+	.container a {
+		position: absolute;
+		bottom: .5em;
+		right: 1em;
+		padding: 8px 25px;
+		color: #fff;
+		background: blueviolet;
+		border-radius: 5px;
+	}
+</style>
+
+	<div class="container">
+		<span class="c">Total votes {{poll.total}}</span>
+		<strong>{{poll.question}}</strong>
+
+		<div>
+			<label>
+				<span>{{poll.option_one}}</span> <span>{{poll.option_one_count}} &nbsp;&nbsp;Vote</span>
+			</label>
+			<label>
+				<span>{{poll.option_two}}</span> <span>{{poll.option_two_count}} &nbsp;&nbsp;Vote</span>
+			</label>
+				<label>
+				 <span>{{poll.option_three}}</span> <span>{{poll.option_three_count}} &nbsp;&nbsp;Vote</span>
+			</label>
+
+			<a href="{% url 'vote' poll.id %}">Go to vote</a>
+
+		</div>
+
+	</div>
+{% endblock %}
